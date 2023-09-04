@@ -1,4 +1,4 @@
-import { Text, View, Button, Modal } from "react-native";
+import { Text, View, Button, Modal, StatusBar } from "react-native";
 import React, { useState } from "react";
 
 export default function App() {
@@ -6,6 +6,11 @@ export default function App() {
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
+        <StatusBar
+          backgroundColor="lightgreen"
+          barStyle="light-content" // dark-content
+          hidden={true}
+        />
         <Button
           title="Press Me"
           onPress={() => setIsModalVisible(true)}
