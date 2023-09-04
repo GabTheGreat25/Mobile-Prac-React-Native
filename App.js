@@ -1,13 +1,29 @@
-import { View, ActivityIndicator } from "react-native";
+import { View, Alert, Button } from "react-native";
 
 export default function App() {
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
-        <ActivityIndicator />
-        <ActivityIndicator size="large" color="red" />
-        <ActivityIndicator size="large" color="red" animating={false} />
-        <ActivityIndicator size="small" color="green" animating={true} />
+        <Button title="Alert" onPress={() => Alert.alert("Invalid data!")} />
+        <Button
+          title="Alert 2"
+          onPress={() => Alert.alert("invalid data!", "DOB incorrect!")}
+        />
+        <Button
+          title="Alert 3"
+          onPress={() =>
+            Alert.alert("invalid data!", "DOB incorrect!", [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+              },
+              {
+                text: "OK",
+                onPress: () => console.log("OK Pressed"),
+              },
+            ])
+          }
+        />
       </View>
     </>
   );
