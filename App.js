@@ -1,40 +1,39 @@
-import { Image, Pressable, ScrollView, Text, View, Button } from "react-native";
-const logoImg = require("./assets/adaptive-icon.png");
+import { Text, View, Button, Modal } from "react-native";
+import React, { useState } from "react";
 
 export default function App() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
         <Button
           title="Press Me"
-          onPress={() => console.log("Button pressed!")}
+          onPress={() => setIsModalVisible(true)}
           color="midnightblue"
           disabled={false}
         />
-        <ScrollView>
-          <Pressable onPress={() => console.log("Image pressed!")}>
-            <Image source={logoImg} style={{ width: 300, height: 300 }} />
-          </Pressable>
-          <Pressable onPress={() => console.log("Text pressed!")}>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              auctor, nunc eget ultricies ultricies, nunc nisl ultricies tortor,
-              quis lacinia nunc nunc eget nunc. Donec auctor, nunc eget
-              ultricies ultricies, nunc nisl ultricies tortor, quis lacinia nunc
-              nunc eget nunc. Donec auctor, nunc eget ultricies ultricies, nunc
-              nisl ultricies tortor, quis lacinia nunc nunc eget nunc. Donec
-              auctor, nunc eget ultricies ultricies, nunc nisl ultricies tortor,
-              quis lacinia nunc nunc eget nunc. Donec auctor, nunc eget
-              ultricies ultricies, nunc nisl ultricies tortor, quis lacinia nunc
-              nunc eget nunc. Donec auctor, nunc eget ultricies ultricies, nunc
-              nisl ultricies tortor, quis lacinia nunc nunc eget nunc. Donec
-              auctor, nunc eget ultricies ultricies, nunc nisl ultricies tortor,
-              quis lacinia nunc nunc eget nunc. Donec auctor, nunc eget
-              ultricies ultricies, nunc nisl ultricies tortor, quis lacinia nunc
-              nunc eget nunc.
-            </Text>
-          </Pressable>
-        </ScrollView>
+        <Modal
+          visible={isModalVisible}
+          onRequestClose={() => setIsModalVisible(false)}
+          // "slide" option: Modal slides into view from the bottom.
+          // "fade" option: Modal fades in with opacity transition.
+          // "none" option: Modal appears instantly without any animation.
+          animationType="slide"
+          // "fullScreen" option: The modal occupies the entire screen.
+          // "pageSheet" option: The modal appears as a sheet on the page.
+          // "formSheet" option: The modal appears as a smaller form sheet on the page.
+          // "overFullScreen" option: The modal appears over the full screen, similar to a full screen presentation.
+          presentationStyle="pageSheet"
+        >
+          <View style={{ flex: 1, backgroundColor: "lightblue", padding: 60 }}>
+            <Text>Modal Content</Text>
+            <Button
+              title="Close"
+              color="midnightblue"
+              onPress={() => setIsModalVisible(false)}
+            ></Button>
+          </View>
+        </Modal>
       </View>
     </>
   );
