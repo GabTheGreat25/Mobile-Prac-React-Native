@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     height: 300,
     flexWrap: "wrap",
+    alignContent: "center",
     backgroundColor: "#fff",
     marginTop: 64,
     borderWidth: 6,
