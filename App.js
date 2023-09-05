@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    alignItems: "baseline", //? stretch, baseline
     justifyContent: "space-evenly",
     backgroundColor: "#fff",
     padding: 20,
