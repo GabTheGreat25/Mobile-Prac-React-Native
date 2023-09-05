@@ -1,3 +1,4 @@
 import Greet from "./Greet";
+import Box from "./Box";
 
-export { Greet };
+export { Greet, Box };

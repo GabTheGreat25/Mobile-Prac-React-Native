@@ -1,9 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export default function ({ name }) {
   return (
     <View>
-      <Text>Hello, {name}!</Text>
+      <Text style={[styles.center]}> Hello, {name}!</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  center: {
+    textAlign: "center",
+  },
+});
