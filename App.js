@@ -10,7 +10,7 @@ export default function App() {
           Box 1
         </Box>
         <Box style={{ backgroundColor: "#b65d1f" }}>Box 2</Box>
-        <Box style={{ backgroundColor: "#1c4c56" }}>Box 3</Box>
+        <Box style={{ backgroundColor: "#1c4c56", flexBasis: 140 }}>Box 3</Box>
         <Box style={{ backgroundColor: "#ab9156" }}>Box 4</Box>
       </View>
     </>
