@@ -6,7 +6,9 @@ export default function App() {
     <>
       <View style={styles.container}>
         <Greet name="Gabriel Mendoza" />
-        <Box style={{ backgroundColor: "#8e9b00" }}>Box 1</Box>
+        <Box style={{ backgroundColor: "#8e9b00", alignSelf: "center" }}>
+          Box 1
+        </Box>
         <Box style={{ backgroundColor: "#b65d1f" }}>Box 2</Box>
         <Box style={{ backgroundColor: "#1c4c56" }}>Box 3</Box>
         <Box style={{ backgroundColor: "#ab9156" }}>Box 4</Box>
@@ -18,9 +20,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "baseline", //? stretch, baseline
-    justifyContent: "space-evenly",
     backgroundColor: "#fff",
     padding: 20,
     borderWidth: 6,
