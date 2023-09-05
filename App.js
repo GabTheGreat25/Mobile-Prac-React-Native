@@ -21,6 +21,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "row",
     backgroundColor: "#fff",
     padding: 20,
     borderWidth: 6,
