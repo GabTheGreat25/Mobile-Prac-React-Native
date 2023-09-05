@@ -9,7 +9,7 @@ export default function App() {
         <View style={[styles.lightblueBg, styles.box]}>
           <Text>Lightblue box</Text>
         </View>
-        <View style={[styles.box, styles.lightgreenBg]}>
+        <View style={[styles.box, styles.lightgreenBg, styles.androidShadow]}>
           <Text>Lightgreen box</Text>
         </View>
       </View>
@@ -32,4 +32,5 @@ const styles = StyleSheet.create({
   },
   lightblueBg: { backgroundColor: "lightblue" },
   lightgreenBg: { backgroundColor: "lightgreen" },
+  androidShadow: { elevation: 10 }, //? android shadow
 });
