@@ -1,132 +1,122 @@
+import React, { useState } from "react";
 import {
-  StyleSheet,
-  Text,
   View,
-  SafeAreaView,
-  FlatList,
-  StatusBar,
-  SectionList,
-  ScrollView,
+  TextInput,
+  Button,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Text,
+  Image,
+  Platform,
 } from "react-native";
-import pokemonList from "./data.json";
-import groupedPokemonList from "./grouped-data.json";
 
-export default function App() {
+const LoginForm = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let errors = {};
+
+    if (!username) errors.username = "Username is required";
+    if (!password) errors.password = "Password is required";
+
+    setErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Submitted", username, password);
+      setUsername("");
+      setPassword("");
+      setErrors({});
+    }
+  };
+
   return (
-    <SafeAreaView styles={styles.container}>
-      {/* <ScrollView style={styles.scrollView}>
-        {pokemonList.map((pokemon) => {
-          //? map is a function that takes in a function as an argument
-          //! Show all the pokemon even when not rendering
-          console.log(pokemon.id);
-          return (
-            <View style={styles.card} key={pokemon.id}>
-              <Text style={styles.cardText}>{pokemon.type}</Text>
-              <Text style={styles.cardText}>{pokemon.name}</Text>
-            </View>
-          );
-        })}
-      </ScrollView> */}
-      {/* <View style={styles.scrollView}>
-        <FlatList
-          data={pokemonList}
-          renderItem={({ item }) => {
-            console.log(item.id);
-            //? FlatList only renders the items that are visible
-            //! FlatList is more performant than ScrollView also uses less memory and lazy loading
-            return (
-              <View style={styles.card}>
-                <Text style={styles.cardText}>{item.type}</Text>
-                <Text style={styles.cardText}>{item.name}</Text>
-              </View>
-            );
+    <KeyboardAvoidingView
+      behavior="padding"
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+      style={styles.container}
+    >
+      <View style={styles.form}>
+        <Image
+          source={require("./assets/adaptive-icon.png")}
+          style={{
+            width: 200,
+            height: 400,
+            alignSelf: "center",
+            marginBottom: 50,
           }}
-          keyExtractor={(item) => item.id.toString()}
-          ItemSeparatorComponent={
-            <View
-              style={{
-                height: 16,
-              }}
-            />
-          }
-          ListEmptyComponent={<Text>No Items Found</Text>}
-          ListHeaderComponent={
-            <Text style={styles.headerText}>Pokemon List</Text>
-          }
-          ListFooterComponent={
-            <Text style={styles.footerText}>End of list</Text>
-          }
-          // horizontal={true}
         />
-      </View> */}
-      <View style={styles.scrollView}>
-        <SectionList
-          sections={groupedPokemonList}
-          renderItem={({ item }) => {
-            //? SectionList only renders the items that are visible
-            //! SectionList is for grouping data or nesting data
-            return (
-              <View style={styles.card}>
-                <Text style={styles.cardText}>{item}</Text>
-              </View>
-            );
-          }}
-          renderSectionHeader={({ section }) => (
-            <Text style={styles.sectionHeaderText}>{section.type}</Text>
-          )}
-          ItemSeparatorComponent={() => (
-            <View
-              style={{
-                height: 16,
-              }}
-            />
-          )}
-          SectionSeparatorComponent={() => (
-            <View
-              style={{
-                height: 16,
-              }}
-            />
-          )}
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your username"
+          value={username}
+          onChangeText={setUsername}
         />
+        {errors.username ? (
+          <Text style={styles.errorText}>{errors.username}</Text>
+        ) : null}
+
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+        {errors.password ? (
+          <Text style={styles.errorText}>{errors.password}</Text>
+        ) : null}
+
+        <Button title="Login" onPress={handleSubmit} />
       </View>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "plum",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    backgroundColor: "#f5f5f5",
   },
-  scrollView: {
-    paddingHorizontal: 16,
-    backgroundColor: "plum",
-    paddingTop: StatusBar.currentHeight, //? StatusBar.currentHeight is the height of the status bar
+  form: {
+    backgroundColor: "#ffffff",
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  card: {
-    backgroundColor: "plum",
-    padding: 16,
-    borderRadius: 8,
-    // marginBottom: 16,
-    borderWidth: 1,
-  },
-  cardText: {
-    fontSize: 30,
-  },
-  headerText: {
-    fontSize: 24,
-    textAlign: "center",
-    marginBottom: 12,
-  },
-  footerText: {
-    fontSize: 24,
-    textAlign: "center",
-    marginTop: 12,
-  },
-  sectionHeaderText: {
-    backgroundColor: "plum",
-    fontSize: 24,
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
     fontWeight: "bold",
   },
+  input: {
+    height: 40,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    marginBottom: 15,
+    padding: 10,
+    borderRadius: 5,
+  },
+  errorText: {
+    color: "red",
+    marginBottom: 10,
+  },
 });
+
+export default LoginForm;
