@@ -4,10 +4,12 @@ import {
   TextInput,
   Button,
   StyleSheet,
-  KeyboardAvoidingView,
+  KeyboardAvoidingView, //? Doesn't have any scrollbar
   Text,
   Image,
   Platform,
+  StatusBar,
+  // ScrollView,
 } from "react-native";
 
 const LoginForm = () => {
@@ -73,6 +75,11 @@ const LoginForm = () => {
           // autoCorrect={false} //? for disable auto correct
           // autoCapitalize="none" //? for disable auto capitalize
         />
+        {/* <TextInput
+          style={[styles.input, styles.multilineText]}
+          placeholder="message"
+          multiline
+        ></TextInput> */}
         {errors.password ? (
           <Text style={styles.errorText}>{errors.password}</Text>
         ) : null}
@@ -102,6 +109,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    paddingTop: StatusBar.currentHeight,
   },
   label: {
     fontSize: 16,
@@ -115,6 +123,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 10,
     borderRadius: 5,
+  },
+  multilineText: {
+    minHeight: 100,
+    textAlignVertical: "top",
   },
   errorText: {
     color: "red",
