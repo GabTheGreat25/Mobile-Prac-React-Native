@@ -69,6 +69,9 @@ const LoginForm = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          // keyboardType="number" //? for number keyboard
+          // autoCorrect={false} //? for disable auto correct
+          // autoCapitalize="none" //? for disable auto capitalize
         />
         {errors.password ? (
           <Text style={styles.errorText}>{errors.password}</Text>
